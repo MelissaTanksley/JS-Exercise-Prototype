@@ -21,12 +21,6 @@ Airplane.prototype.land = function () {
 
 
 /*
-// 👇 COMPLETE YOUR WORK BELOW 👇
-// 👇 COMPLETE YOUR WORK BELOW 👇
-// 👇 COMPLETE YOUR WORK BELOW 👇
-*/
-
-/*
   TASK 1
     - Write a Person Constructor that initializes `name` and `age` from arguments.
     - All instances of Person should initialize with an empty `stomach` array.
@@ -40,8 +34,32 @@ Airplane.prototype.land = function () {
 */
 
 function Person() {
+  function Person(name, age,){
+    this.name = name;
+    this.age = age;
+    this.stomach = [];
+  }
 
+  const Person1 = new Person("Mary, 50");
+
+  Person.prototype.eat = function(someFood){
+    if (this.stomach.length <= 10) {
+      this.stomach.push(someFood);
+    }
+    return this.stomach;
+    };
+
+    Person.prototype.poop = function() {
+      return this.stomach = [];
+    }
+
+    Person.prototype.toString = function(){
+      return '${this.name}, ${this.age}';
+    };
+  }
 }
+  
+
 
 /*
   TASK 2
@@ -58,6 +76,30 @@ function Person() {
 */
 
 function Car() {
+function Car(model, milesPerGallon){
+  this.model = model;
+  this.milesPerGallon = milesPerGallon;
+  this.tank = 0;
+  this.odometer = 0;
+}
+
+const Car1 = newCar('KIT', '35');
+
+Car.prototype.fill = function(gallons) {
+  return this.tank += gallons;
+}
+
+Car.prototype.drive = function(distance){
+  const milesUntilEmpty = this.tank * this.milesPerGallon;
+  if(distance > milesUntilEmpty){
+    this.odometer += milesUntilEmpty;
+    this.tank = 0
+    return "I ran out of fuel at ${this.odometer} miles!";
+  }
+
+  this.odometer += distance;
+  this.tank -= distance / this.milesPerGallon;
+}
 
 }
 
@@ -70,18 +112,30 @@ function Car() {
 */
 function Baby() {
 
+  function Baby(name, age, favoriteToy){
+    Person.call (this, name, age);
+    this.favoriteToy = favoriteToy;
+  }
+
+  Baby.prototype = Object.create(Person.prototype);
+  Baby.prototype.play = function(){
+    return "Playing with ${this.favoriteToy}";
+  }
+
 }
 
 /* 
   TASK 4
 
-  In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
-*/
-
+  In your own words explain the four principles for the "this" keyword below: */
+1. Global Binding - when in the global scope, the value of "this" will be the 
+window/console Object which contain variables and functions that can be accessed anywhere. 
+2. Implicit Binding - whenever a function is called by a preceeding dot, the Object
+left of the dot gets "this". 
+3. New Binding - whenever a constructor function is used, "this" refers to the specific
+instance of the object that is created and returned by the constructor function. 
+4. Explicit Binding - whenever JavaScript's call or apply method is used, 
+"this" is explicitly defined. 
 
 ///////// END OF CHALLENGE /////////
 ///////// END OF CHALLENGE /////////
