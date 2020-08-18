@@ -41,7 +41,22 @@ Airplane.prototype.land = function () {
 
 function Person() {
 
-}
+  function Person(name, age) {
+    this.name = name;
+    this.age = age;
+    this.stomach = [];
+  }
+  Person.prototype = {
+    eat: function(someFood) {
+      this.stomach.length < 10 ? this.stomach.push(someFood) : null;
+    },
+    poop: function() {
+      this.stomach = [];
+    },
+    toString: function() {
+      return `${this.name}, ${this.age}`;
+    }
+  };
 
 /*
   TASK 2
@@ -92,4 +107,4 @@ if (typeof exports !== 'undefined') {
   if (Person) { module.exports.Person = Person }
   if (Car) { module.exports.Car = Car }
   if (Baby) { module.exports.Baby = Baby }
-}
+}}
